@@ -1,0 +1,11 @@
+.loompa-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.loompa-pic {
+    width: 200px;
+    height: 120px;
+}
