@@ -1,0 +1,28 @@
+.input-container {
+    position: relative;
+    border-radius: 5px;
+    border: 2px solid lightgray;
+    width: 130px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    padding: 5px;
+    gap: 5px;
+    margin-top: 10px;
+    align-self: flex-end;
+    right: 180px;
+}
+
+.input {
+    width: 100%;
+    border: none;
+    padding-right: 40px;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.button-image {
+    height: 18px;
+}

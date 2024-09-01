@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { loompaListSlice as listReducer } from './features/loompaList'
+import { loompaListReducer } from './features/loompaList'
 
 export const store = configureStore({
   reducer: {
-    loompas: () => listReducer,
+    loompas: loompaListReducer,
   },
 })
 

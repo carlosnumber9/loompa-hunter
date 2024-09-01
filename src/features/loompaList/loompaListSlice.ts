@@ -3,18 +3,28 @@ import { list as mock } from "../../mocks";
 import { OompaLoompa } from "../../types";
 import { RootState } from "../../store";
 
-const initialState: OompaLoompa[] = mock;
+interface State {
+    loompas: OompaLoompa[];
+    searchText: string;
+}
+
+const initialState: State = {
+    loompas: mock,
+    searchText: ''
+}
 
 export const loompaListSlice = createSlice({
-    name: 'loompaList',
+    name: "loompaList",
     initialState,
     reducers: {
-        update: (state) => state,
-        filter: (state, action: PayloadAction<string>) => {
-            state.filter((loompa: OompaLoompa) => loompa.first_name.includes(action.payload))
-        }
-    }
+        update: (state: State = initialState) => state,
+        setSearchText: (state: State, action: PayloadAction<string>) => ({
+            ...state,
+            searchText: action.payload
+        }),
+    },
 });
 
+export const { update, setSearchText } = loompaListSlice.actions;
 export const selectList = (state: RootState) => state.loompas;
-export default loompaListSlice.reducer;
+export const loompaListReducer = loompaListSlice.reducer;
