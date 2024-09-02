@@ -20,3 +20,9 @@ export interface OompaLoompa {
     country: string;
     height: number;
 }
+
+export enum ListStatus {
+    OK = 'OK',
+    ERROR = 'ERROR',
+    LOADING = 'LOADING'
+}

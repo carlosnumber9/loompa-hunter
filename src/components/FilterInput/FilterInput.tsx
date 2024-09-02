@@ -19,7 +19,7 @@ export const FilterInput: React.FC = () => {
       <span> | </span>
       <img
         className="button-image"
-        src="https://s3.eu-central-1.amazonaws.com/napptilus/level-test/imgs/ic_search.png"
+        src={import.meta.env.VITE_SEARCH_ICON_URL}
         alt="Search button"
       />
     </div>

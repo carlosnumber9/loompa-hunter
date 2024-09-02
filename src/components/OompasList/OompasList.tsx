@@ -1,18 +1,22 @@
-import { OompaLoompa } from "../../types";
+import "./OompasList.css";
+import { ListStatus, OompaLoompa } from "../../types";
 import { useAppSelector } from "../../hooks";
 import { Item } from "../Item";
 import { getFilteredList } from "./filter";
-import "./OompasList.css";
+import { useOompaLoompa } from "../../hooks/useOompaLoompa";
 
 export const OompasList: React.FC = () => {
-  const loompas: OompaLoompa[] = useAppSelector((state) => state.loompas.value);
   const searchText: string = useAppSelector((state) => state.searchText.value);
+  const { loompas, status } = useOompaLoompa();
 
   return (
     <div className="loompas-list">
-      {getFilteredList(loompas, searchText).map((loompa: OompaLoompa) => (
-        <Item oompaLoompa={loompa} key={loompa.id} />
-      ))}
+      {status === ListStatus.OK &&
+        getFilteredList(loompas, searchText).map((loompa: OompaLoompa) => (
+          <Item oompaLoompa={loompa} key={loompa.id} />
+        ))}
+      {status === ListStatus.LOADING && <span> Loading </span>}
+      {status === ListStatus.ERROR && <span> Error </span>}
     </div>
   );
 };
