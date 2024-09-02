@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ListStatus, OompaLoompa } from "../../types";
+import { ListStatus, OompaLoompa } from "../../declarations";
 import { RootState } from "../../store";
 
 interface State {

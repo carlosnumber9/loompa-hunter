@@ -1,5 +1,5 @@
 import "./OompasList.css";
-import { ListStatus, OompaLoompa } from "../../types";
+import { ListStatus, OompaLoompa } from "../../declarations";
 import { useAppSelector } from "../../hooks";
 import { Item } from "../Item";
 import { getFilteredList } from "./filter";

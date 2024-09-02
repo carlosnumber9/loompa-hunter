@@ -1,20 +1,21 @@
-import { OompaLoompa } from "../../types"
-import './Item.css'
+import { useAppSelector } from "../../hooks";
+import { RootState } from "../../store";
+import { OompaLoompa } from "../../declarations";
+import { getHighlightedInfo } from "./highlightText";
+import "./Item.css";
 
 interface Props {
-    oompaLoompa: OompaLoompa;
+  oompaLoompa: OompaLoompa;
 }
 
-const GENDER = {
-    F: 'Woman',
-    M: 'Man'
-}
-
-export const Item: React.FC<Props> = ({ oompaLoompa }) => (
-    <div className="loompa-item"
-        key={`${oompaLoompa.id}_oompa`}>
-        <img className="loompa-pic" src={oompaLoompa.image} />
-        <h4>{`${oompaLoompa.first_name} ${oompaLoompa.last_name}`}</h4>
-        <span>{GENDER[oompaLoompa.gender]}</span>
-        <span>{oompaLoompa.profession}</span>
-    </div>);
+export const Item: React.FC<Props> = ({ oompaLoompa }) => {
+  const searchText: string = useAppSelector(
+    (state: RootState) => state.searchText.value
+  );
+  return (
+    <div className="loompa-item" key={`${oompaLoompa.id}_oompa`}>
+      <img className="loompa-pic" src={oompaLoompa.image} />
+      {getHighlightedInfo(oompaLoompa, searchText)}
+    </div>
+  );
+};

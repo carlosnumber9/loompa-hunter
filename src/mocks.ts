@@ -1,4 +1,4 @@
-import { OompaLoompa } from "./types";
+import { OompaLoompa } from "./declarations";
 
 export const list: OompaLoompa[] = [
   {
