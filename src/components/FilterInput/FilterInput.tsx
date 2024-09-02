@@ -1,4 +1,4 @@
-import { setSearchText } from "../../features/loompaList";
+import { setText } from "../../features";
 import { useAppDispatch } from "../../hooks";
 import { AppDispatch } from "../../store";
 import "./FilterInput.css";
@@ -13,7 +13,7 @@ export const FilterInput: React.FC = () => {
         className="input"
         placeholder="Search"
         onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-          dispatch(setSearchText(event.target.value))
+          dispatch(setText(event.target.value))
         }
       />
       <span> | </span>

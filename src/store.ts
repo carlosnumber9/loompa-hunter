@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { loompaListReducer } from './features/loompaList'
+import { searchTextReducer } from './features/searchText/searchTextSlice'
 
 export const store = configureStore({
   reducer: {
     loompas: loompaListReducer,
+    searchText: searchTextReducer,
   },
 })
 

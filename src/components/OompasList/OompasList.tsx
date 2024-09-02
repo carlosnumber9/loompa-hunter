@@ -5,7 +5,8 @@ import { getFilteredList } from "./filter";
 import "./OompasList.css";
 
 export const OompasList: React.FC = () => {
-  const { loompas, searchText } = useAppSelector((state) => state.loompas);
+  const loompas: OompaLoompa[] = useAppSelector((state) => state.loompas.value);
+  const searchText: string = useAppSelector((state) => state.searchText.value);
 
   return (
     <div className="loompas-list">
