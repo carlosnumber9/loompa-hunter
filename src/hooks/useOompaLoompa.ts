@@ -15,7 +15,6 @@ export const useOompaLoompa = () => {
   );
 
   useEffect(() => {
-    console.log('Calling API')
     fetchLoompa();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
