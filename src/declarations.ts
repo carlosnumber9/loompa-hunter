@@ -8,7 +8,7 @@ interface Favourites {
 }
 
 export interface OompaLoompa {
-  id: number;
+  id: string;
   first_name: string;
   last_name: string;
   favorite: Favourites;
@@ -21,7 +21,7 @@ export interface OompaLoompa {
   height: number;
 }
 
-export enum ListStatus {
+export enum LoadingState {
   OK = "OK",
   ERROR = "ERROR",
   LOADING = "LOADING",
@@ -31,3 +31,5 @@ export const GENDER = {
   F: "Woman",
   M: "Man",
 };
+
+export type LoompaDetails = { [key: string]: OompaLoompa };

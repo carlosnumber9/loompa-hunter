@@ -1,15 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ListStatus, OompaLoompa } from "../../declarations";
+import { LoadingState, OompaLoompa } from "../../declarations";
 import { RootState } from "../../store";
 
 interface State {
   value: OompaLoompa[];
-  status: ListStatus;
+  status: LoadingState;
 }
 
 const initialState: State = {
   value: [],
-  status: ListStatus.LOADING,
+  status: LoadingState.LOADING,
 };
 
 export const fetchLoompasList = createAsyncThunk(
@@ -31,14 +31,14 @@ export const loompaListSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchLoompasList.pending, (state) => {
-        state.status = ListStatus.LOADING;
+        state.status = LoadingState.LOADING;
       })
       .addCase(fetchLoompasList.fulfilled, (state, action) => {
         state.value = [...state.value, ...action.payload];
-        state.status = ListStatus.OK;
+        state.status = LoadingState.OK;
       })
       .addCase(fetchLoompasList.rejected, (state) => {
-        state.status = ListStatus.ERROR;
+        state.status = LoadingState.ERROR;
       });
   },
 });

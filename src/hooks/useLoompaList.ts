@@ -3,7 +3,7 @@ import { fetchLoompasList } from "../features";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { RootState } from "../store";
 
-export const useOompaLoompa = () => {
+export const useLoompaList = () => {
   const dispatch = useAppDispatch();
   const { value: loompas, status } = useAppSelector(
     (state: RootState) => state.loompas
