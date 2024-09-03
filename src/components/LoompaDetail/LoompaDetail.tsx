@@ -12,7 +12,7 @@ export const LoompaDetail: React.FC = () => {
 
   useEffect(() => {
     if (status === LoadingState.OK && details) {
-      document.title = `${details.first_name} ${details.last_name} - Oompa Loompa Hunter`;
+      document.title = `${details.data.first_name} ${details.data.last_name} - Oompa Loompa Hunter`;
     } else {
       document.title = "Detail page - Loompa Hunter";
     }
@@ -21,7 +21,7 @@ export const LoompaDetail: React.FC = () => {
   return (
     <div className="loompa-detail">
       {status === LoadingState.OK && details && (
-        <span>{details.first_name}</span>
+        <span>{details.data.first_name}</span>
       )}
       {status === LoadingState.ERROR && <span>Error</span>}
       {status === LoadingState.LOADING && <span>Loading</span>}

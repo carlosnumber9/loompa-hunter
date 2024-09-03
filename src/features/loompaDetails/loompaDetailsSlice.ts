@@ -1,9 +1,15 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { LoadingState, OompaLoompa } from "../../declarations";
+import {
+  LoadingState,
+  LoompaDetail,
+  LoompaDetails,
+  OompaLoompaDetail,
+} from "../../declarations";
 import { RootState } from "../../store";
+import { lastRequestExpired } from "../../utils";
 
 interface State {
-  details: { [key: string]: OompaLoompa };
+  details: LoompaDetails;
   status: LoadingState;
 }
 
@@ -12,13 +18,23 @@ const initialState: State = {
   status: LoadingState.LOADING,
 };
 
-export const fetchLoompaDetails = createAsyncThunk(
+export const getLoompaDetails = createAsyncThunk(
   "loompaDetails/fetch",
-  async (loompaId: string) => {
-    const response = await fetch(
-      `${import.meta.env.VITE_LOOMPA_LIST_URL}/${loompaId}`
-    ).then((response) => response.json());
-    return { ...response, id: loompaId } as OompaLoompa;
+  async (loompaId: string, { getState }): Promise<OompaLoompaDetail> => {
+    const currentState: RootState = getState() as RootState;
+    const currentLoompaDetails: LoompaDetail =
+      currentState.details.details[loompaId];
+    if (
+      !currentLoompaDetails ||
+      lastRequestExpired(currentLoompaDetails.lastRequestTime)
+    ) {
+      const response = await fetch(
+        `${import.meta.env.VITE_LOOMPA_LIST_URL}/${loompaId}`
+      ).then((response) => response.json());
+      return { ...response, id: loompaId } as OompaLoompaDetail;
+    } else {
+      return currentLoompaDetails.data;
+    }
   }
 );
 
@@ -28,22 +44,31 @@ export const loompaDetailsSlice = createSlice({
   reducers: {
     setDetails: (
       state: State = initialState,
-      action: PayloadAction<OompaLoompa>
+      action: PayloadAction<OompaLoompaDetail>
     ) => ({
       ...state,
-      details: { ...state.details, [action.payload.id]: action.payload },
+      details: {
+        ...state.details,
+        [action.payload.id]: {
+          data: action.payload,
+          lastRequestTime: new Date().getTime(),
+        },
+      },
     }),
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchLoompaDetails.pending, (state) => {
+      .addCase(getLoompaDetails.pending, (state) => {
         state.status = LoadingState.LOADING;
       })
-      .addCase(fetchLoompaDetails.fulfilled, (state, action) => {
-        state.details[action.payload.id] = action.payload;
+      .addCase(getLoompaDetails.fulfilled, (state, action) => {
+        state.details[action.payload.id] = {
+          data: action.payload,
+          lastRequestTime: new Date().getTime(),
+        };
         state.status = LoadingState.OK;
       })
-      .addCase(fetchLoompaDetails.rejected, (state) => {
+      .addCase(getLoompaDetails.rejected, (state) => {
         state.status = LoadingState.ERROR;
       });
   },

@@ -1,24 +1,20 @@
 type Gender = "M" | "F";
 
 interface Favourites {
-  color: string;
-  food: string;
   random_string: string;
-  song: string;
 }
 
 export interface OompaLoompa {
   id: string;
   first_name: string;
   last_name: string;
-  favorite: Favourites;
   gender: Gender;
   image: string;
   profession: string;
-  email: string;
-  age: number;
-  country: string;
-  height: number;
+}
+
+export interface OompaLoompaDetail extends OompaLoompa {
+  favorite: Favourites;
 }
 
 export enum LoadingState {
@@ -32,4 +28,11 @@ export const GENDER = {
   M: "Man",
 };
 
-export type LoompaDetails = { [key: string]: OompaLoompa };
+export interface LoompaDetail {
+  lastRequestTime: number;
+  data: OompaLoompaDetail;
+}
+
+export type LoompaDetails = {
+  [key: string]: LoompaDetail;
+};

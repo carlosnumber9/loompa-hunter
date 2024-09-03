@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { RootState } from "../store";
-import { fetchLoompaDetails } from "../features";
+import { getLoompaDetails } from "../features";
 import { LoadingState, LoompaDetails } from "../declarations";
 
 export const useLoompaDetails = (id: string) => {
@@ -14,14 +14,12 @@ export const useLoompaDetails = (id: string) => {
   );
 
   const fetchDetails = useCallback(
-    () => dispatch(fetchLoompaDetails(id)),
+    () => dispatch(getLoompaDetails(id)),
     [id, dispatch]
   );
 
   useEffect(() => {
-    console.log(`Status: ${status}, Details: ${JSON.stringify(details)}`);
-    if (!details[id] && status !== LoadingState.OK) {
-      console.log("Fetching details...");
+    if (!details[id]) {
       fetchDetails();
     }
   }, [status, details, fetchDetails, id]);
