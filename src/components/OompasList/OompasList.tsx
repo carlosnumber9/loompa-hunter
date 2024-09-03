@@ -11,16 +11,18 @@ export const OompasList: React.FC = () => {
   const { loompas, status } = useLoompaList();
 
   return (
-    <div className="loompas-list">
+    <div className="list-container">
       <FilterInput />
       <h1>Find your Oompa Loompa</h1>
       <h3>There are more than 100k</h3>
-      {status === LoadingState.OK &&
-        getFilteredList(loompas, searchText).map((loompa: OompaLoompa) => (
-          <Item oompaLoompa={loompa} key={loompa.id} />
-        ))}
-      {status === LoadingState.LOADING && <span> Loading </span>}
-      {status === LoadingState.ERROR && <span> Error </span>}
+      <div className="loompas-list">
+        {status === LoadingState.OK &&
+          getFilteredList(loompas, searchText).map((loompa: OompaLoompa) => (
+            <Item oompaLoompa={loompa} key={loompa.id} />
+          ))}
+        {status === LoadingState.LOADING && <span> Loading </span>}
+        {status === LoadingState.ERROR && <span> Error </span>}
+      </div>
     </div>
   );
 };

@@ -6,24 +6,26 @@ import { LoompaDetail, OompasList } from "./components";
 import { Link } from "react-router-dom";
 
 function App() {
+  document.title = 'Loompa Hunter';
   return (
     <Provider store={store}>
       <BrowserRouter>
         <header>
-          <Link to={'/'}>
-          <img
-            className="site-logo"
-            alt="App Logo"
-            src={import.meta.env.VITE_OOMPA_LOOMPA_ICON_URL}
-          /></Link>
+          <Link to={"/"}>
+            <img
+              className="site-logo"
+              alt="App Logo"
+              src={import.meta.env.VITE_OOMPA_LOOMPA_ICON_URL}
+            />
+          </Link>
           <h3> Oompa Loompa's Crew </h3>
         </header>
-        
-        <Routes>
-          <Route path="/" element={<OompasList />} />
-          <Route path="/:loompaId" element={<LoompaDetail />} />
-        </Routes>
-        
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<OompasList />} />
+            <Route path="/:loompaId" element={<LoompaDetail />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </Provider>
   );
