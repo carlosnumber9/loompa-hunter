@@ -20,8 +20,8 @@ export const OompasList: React.FC = () => {
   return (
     <div className="list-container">
       <FilterInput />
-      <h1>Find your Oompa Loompa</h1>
-      <h3>There are more than 100k</h3>
+      <h1 id="list-title">Find your Oompa Loompa</h1>
+      <h3 id="list-subtitle">There are more than 100k</h3>
       <div className="loompas-list">
         {(loompas.length > 0 || status === LoadingState.OK) &&
           filteredList.map((loompa: OompaLoompa) => (

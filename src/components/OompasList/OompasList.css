@@ -9,28 +9,58 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 20px;
-    max-width: 800px;
     justify-content: center;
 }
 
+#list-title {
+    margin-bottom: 0;
+    font-weight: 500;
+}
+
+#list-subtitle {
+    margin-top: 0;
+    color: rgb(95 95 95);
+    font-weight: 500;
+}
+
 @media screen and (max-width: 600px) {
-    h3 {
+    #list-subtitle {
         font-size: 1.2rem;
     }
 
-    h1 {
+    #list-title {
         font-size: 1.8rem;
+    }
+
+    .loompas-list {
+        max-width: 90vw;
     }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-    h1 {
-        font-size: 2rem;
+@media screen and (min-width: 600px) and (max-width: 1024px) {
+    #list-subtitle {
+        font-size: 1.5rem;
+    }
+
+    #list-title {
+        font-size: 2.5rem;
+    }
+
+    .loompas-list {
+        max-width: 80vw;
     }
 }
 
 @media screen and (min-width: 1025px) {
-    h1 {
+    #list-subtitle {
         font-size: 2rem;
+    }
+
+    #list-title {
+        font-size: 3rem;
+    }
+
+    .loompas-list {
+        max-width: 70vw;
     }
 }
