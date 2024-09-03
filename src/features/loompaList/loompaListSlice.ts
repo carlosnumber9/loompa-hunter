@@ -5,11 +5,13 @@ import { RootState } from "../../store";
 interface State {
   value: OompaLoompa[];
   status: LoadingState;
+  lastRequest: number;
 }
 
 const initialState: State = {
   value: [],
   status: LoadingState.LOADING,
+  lastRequest: new Date('1970-03-02').getTime(),
 };
 
 export const fetchLoompasList = createAsyncThunk(
@@ -36,6 +38,7 @@ export const loompaListSlice = createSlice({
       .addCase(fetchLoompasList.fulfilled, (state, action) => {
         state.value = [...state.value, ...action.payload];
         state.status = LoadingState.OK;
+        state.lastRequest = new Date().getTime();
       })
       .addCase(fetchLoompasList.rejected, (state) => {
         state.status = LoadingState.ERROR;

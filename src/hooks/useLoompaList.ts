@@ -2,22 +2,27 @@ import { useCallback, useEffect } from "react";
 import { fetchLoompasList } from "../features";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { RootState } from "../store";
+import { lastRequestExpired } from "../utils";
 
 export const useLoompaList = () => {
   const dispatch = useAppDispatch();
-  const { value: loompas, status } = useAppSelector(
-    (state: RootState) => state.loompas
-  );
+  const {
+    value: loompas,
+    status,
+    lastRequest,
+  } = useAppSelector((state: RootState) => state.loompas);
 
-  const fetchLoompa = useCallback(
+  const fetchLoompas = useCallback(
     () => dispatch(fetchLoompasList()),
     [dispatch]
   );
 
   useEffect(() => {
-    fetchLoompa();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (lastRequestExpired(lastRequest)) {
+      fetchLoompas();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastRequest]);
 
-  return { loompas, status, fetchLoompa };
+  return { loompas, status, fetchLoompas };
 };
