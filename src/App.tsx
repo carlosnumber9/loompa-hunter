@@ -6,7 +6,6 @@ import { LoompaDetail, OompasList } from "./components";
 import { Link } from "react-router-dom";
 
 function App() {
-  document.title = 'Loompa Hunter';
   return (
     <Provider store={store}>
       <BrowserRouter>

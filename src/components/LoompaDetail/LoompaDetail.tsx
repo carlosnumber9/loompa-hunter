@@ -5,7 +5,6 @@ import { useLoompaDetails } from "../../hooks/useLoompaDetails";
 import { useEffect } from "react";
 
 export const LoompaDetail: React.FC = () => {
-  document.title = 'Details card'
   const params: Readonly<Params<string>> = useParams();
   const loompaId: string | undefined = params.loompaId;
 
@@ -13,7 +12,9 @@ export const LoompaDetail: React.FC = () => {
 
   useEffect(() => {
     if (status === LoadingState.OK && details) {
-      console.log("Details fetched successfully");
+      document.title = `${details.first_name} ${details.last_name} - Oompa Loompa Hunter`;
+    } else {
+      document.title = "Detail page - Loompa Hunter";
     }
   }, [status, details]);
 

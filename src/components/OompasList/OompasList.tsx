@@ -5,10 +5,15 @@ import { Item } from "../Item";
 import { getFilteredList } from "./filter";
 import { useLoompaList } from "../../hooks/useLoompaList";
 import { FilterInput } from "../FilterInput";
+import { useEffect } from "react";
 
 export const OompasList: React.FC = () => {
   const searchText: string = useAppSelector((state) => state.searchText.value);
   const { loompas, status } = useLoompaList();
+
+  useEffect(() => {
+    document.title = "Oompa Loompa list - Loompa Hunter";
+  }, []);
 
   return (
     <div className="list-container">
