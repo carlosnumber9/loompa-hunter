@@ -5,6 +5,7 @@ import { useLoompaDetails } from "../../hooks";
 import { useEffect } from "react";
 import { LoompaCard } from "../LoompaCard";
 import sanitize from "sanitize-html";
+import { Loader } from "../Loader";
 
 export const LoompaDetail: React.FC = () => {
   const params: Readonly<Params<string>> = useParams();
@@ -44,7 +45,7 @@ export const LoompaDetail: React.FC = () => {
         </div>
       )}
       {status === LoadingState.ERROR && <span>Error</span>}
-      {status === LoadingState.LOADING && <span>Loading</span>}
+      {status === LoadingState.LOADING && <Loader />}
     </div>
   );
 };

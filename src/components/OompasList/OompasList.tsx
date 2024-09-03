@@ -4,6 +4,7 @@ import { LoadingState, OompaLoompa } from "../../declarations";
 import { useAppSelector, useLoompaList } from "../../hooks";
 import { Item, FilterInput } from "..";
 import { getFilteredList } from "./filter";
+import { Loader } from "../Loader";
 
 export const OompasList: React.FC = () => {
   const searchText: string = useAppSelector((state) => state.searchText.value);
@@ -27,8 +28,8 @@ export const OompasList: React.FC = () => {
           filteredList.map((loompa: OompaLoompa) => (
             <Item oompaLoompa={loompa} key={loompa.id} />
           ))}
-        {status === LoadingState.LOADING && <span> Loading </span>}
         {status === LoadingState.ERROR && <span> Error </span>}
+        {status === LoadingState.LOADING && <Loader />}
       </div>
     </div>
   );
