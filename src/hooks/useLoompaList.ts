@@ -22,7 +22,7 @@ export const useLoompaList = () => {
       fetchLoompas();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lastRequest]);
+  }, []);
 
   return { loompas, status, fetchLoompas };
 };
