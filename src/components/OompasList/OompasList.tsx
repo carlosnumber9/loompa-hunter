@@ -1,11 +1,9 @@
 import "./OompasList.css";
-import { LoadingState, OompaLoompa } from "../../declarations";
-import { useAppSelector } from "../../hooks";
-import { Item } from "../Item";
-import { getFilteredList } from "./filter";
-import { useLoompaList } from "../../hooks/useLoompaList";
-import { FilterInput } from "../FilterInput";
 import { useEffect, useMemo } from "react";
+import { LoadingState, OompaLoompa } from "../../declarations";
+import { useAppSelector, useLoompaList } from "../../hooks";
+import { Item, FilterInput } from "..";
+import { getFilteredList } from "./filter";
 
 export const OompasList: React.FC = () => {
   const searchText: string = useAppSelector((state) => state.searchText.value);
@@ -25,7 +23,7 @@ export const OompasList: React.FC = () => {
       <h1>Find your Oompa Loompa</h1>
       <h3>There are more than 100k</h3>
       <div className="loompas-list">
-        {status === LoadingState.OK &&
+        {(loompas.length > 0 || status === LoadingState.OK) &&
           filteredList.map((loompa: OompaLoompa) => (
             <Item oompaLoompa={loompa} key={loompa.id} />
           ))}
