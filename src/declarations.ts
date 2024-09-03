@@ -1,9 +1,5 @@
 type Gender = "M" | "F";
 
-interface Favourites {
-  random_string: string;
-}
-
 export interface OompaLoompa {
   id: string;
   first_name: string;
@@ -14,7 +10,7 @@ export interface OompaLoompa {
 }
 
 export interface OompaLoompaDetail extends OompaLoompa {
-  favorite: Favourites;
+  description: string;
 }
 
 export enum LoadingState {

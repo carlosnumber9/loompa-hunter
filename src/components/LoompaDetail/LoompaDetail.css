@@ -1,0 +1,9 @@
+.loompa-image {
+    width: 40vw;
+    min-width: 350px;
+}
+
+.loompa-detail {
+    margin-top: 50px;
+    display: flex;
+}

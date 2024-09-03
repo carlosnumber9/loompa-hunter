@@ -1,8 +1,9 @@
 import "./LoompaDetail.css";
 import { Params, useParams } from "react-router-dom";
 import { LoadingState } from "../../declarations";
-import { useLoompaDetails } from "../../hooks/useLoompaDetails";
+import { useLoompaDetails } from "../../hooks";
 import { useEffect } from "react";
+import { LoompaCard } from "../LoompaCard";
 
 export const LoompaDetail: React.FC = () => {
   const params: Readonly<Params<string>> = useParams();
@@ -21,7 +22,20 @@ export const LoompaDetail: React.FC = () => {
   return (
     <div className="loompa-detail">
       {status === LoadingState.OK && details && (
-        <span>{details.data.first_name}</span>
+        <div className="loompa-info">
+          <div>
+            <img
+              className="loompa-image"
+              src={details.data.image}
+              alt="Oompa Loompa image"
+            />
+          </div>
+
+          <div className="loompa-data">
+            <LoompaCard oompaLoompa={details.data} />
+            <p className="loompa-text">{details.data.description}</p>
+          </div>
+        </div>
       )}
       {status === LoadingState.ERROR && <span>Error</span>}
       {status === LoadingState.LOADING && <span>Loading</span>}

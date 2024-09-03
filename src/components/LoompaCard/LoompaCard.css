@@ -1,0 +1,51 @@
+.loompa-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.loompa-name {
+    margin-bottom: 0;
+}
+
+.loompa-info {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.loompa-text {
+    width: 100%;
+    text-wrap: wrap;
+    height: fit-content;
+    overflow-wrap: break-word;
+}
+
+.loompa-data {
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+    min-width: 300px;
+}
+
+@media screen and (max-width: 600px) {
+    .loompa-info {
+        flex-wrap: wrap;
+    }
+  }
+  
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    .loompa-info {
+        flex-wrap: nowrap;
+    }
+  }
+  
+  @media screen and (min-width: 1025px) {
+    .loompa-info {
+        flex-wrap: nowrap;
+    }
+  }
