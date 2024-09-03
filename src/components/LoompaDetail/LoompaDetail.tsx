@@ -4,6 +4,7 @@ import { LoadingState } from "../../declarations";
 import { useLoompaDetails } from "../../hooks";
 import { useEffect } from "react";
 import { LoompaCard } from "../LoompaCard";
+import sanitize from "sanitize-html";
 
 export const LoompaDetail: React.FC = () => {
   const params: Readonly<Params<string>> = useParams();
@@ -33,7 +34,12 @@ export const LoompaDetail: React.FC = () => {
 
           <div className="loompa-data">
             <LoompaCard oompaLoompa={details.data} />
-            <p className="loompa-text">{details.data.description}</p>
+            <p
+              className="loompa-text"
+              dangerouslySetInnerHTML={{
+                __html: sanitize(details.data.description),
+              }}
+            />
           </div>
         </div>
       )}
