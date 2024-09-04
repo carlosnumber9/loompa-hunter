@@ -13,6 +13,7 @@ export const useLoompaDetails = (id: string) => {
     (state: RootState) => state.details.details
   );
 
+  // Data fetch
   const fetchDetails = useCallback(
     () => dispatch(getLoompaDetails(id)),
     [id, dispatch]
@@ -23,6 +24,16 @@ export const useLoompaDetails = (id: string) => {
       fetchDetails();
     }
   }, [status, details, fetchDetails, id]);
+
+  // Page title
+  useEffect(() => {
+    if (status === LoadingState.OK && details[id]) {
+      document.title = `${details[id].data.first_name} ${details[id].data.last_name} - Oompa Loompa Hunter`;
+    } else {
+      document.title = "Detail page - Loompa Hunter";
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status, details]);
 
   return { details: details[id], status, fetchLoompa: fetchDetails };
 };

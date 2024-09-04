@@ -1,4 +1,4 @@
-import "./OompasList.css";
+import "./LoompaList.css";
 import { LoadingState, OompaLoompa } from "../../declarations";
 import { useAppSelector, useLoompaList } from "../../hooks";
 import { Item, FilterInput } from "..";

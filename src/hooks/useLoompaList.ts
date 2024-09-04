@@ -14,6 +14,11 @@ export const useLoompaList = (searchText: string) => {
     lastRequest,
   } = useAppSelector((state: RootState) => state.loompas);
 
+  const filteredList: OompaLoompa[] = useMemo(() => {
+    return getFilteredList(loompas, searchText);
+  }, [loompas, searchText]);
+
+  // Data fetch
   const fetchLoompas = useCallback(
     () => dispatch(fetchLoompasList()),
     [dispatch]
@@ -26,6 +31,7 @@ export const useLoompaList = (searchText: string) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Dynamic pagination
   useEffect(() => {
     const onScroll = () => {
       const scrolledPosition: number = window.scrollY + window.innerHeight;
@@ -49,10 +55,7 @@ export const useLoompaList = (searchText: string) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
-  const filteredList: OompaLoompa[] = useMemo(() => {
-    return getFilteredList(loompas, searchText);
-  }, [loompas, searchText]);
-
+  // Page title
   useEffect(() => {
     document.title = "Oompa Loompa list - Loompa Hunter";
   }, []);
