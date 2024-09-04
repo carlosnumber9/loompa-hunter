@@ -12,6 +12,7 @@ export const useLoompaList = (searchText: string) => {
     value: loompas,
     status,
     lastRequest,
+    nextPage
   } = useAppSelector((state: RootState) => state.loompas);
 
   const filteredList: OompaLoompa[] = useMemo(() => {
@@ -60,5 +61,5 @@ export const useLoompaList = (searchText: string) => {
     document.title = "Oompa Loompa list - Loompa Hunter";
   }, []);
 
-  return { loompas: filteredList, status };
+  return { loompas: filteredList, status, currentPage: nextPage-1 };
 };
