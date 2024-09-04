@@ -43,3 +43,9 @@ npm run build
 ```bash
 npm run lint
 ```
+
+
+
+## Check it
+
+Visit [the deployed version in Netlify](https://loompa-hunter.netlify.app/) to take a look and get to know the best workers!
