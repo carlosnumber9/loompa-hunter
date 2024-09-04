@@ -1,12 +1,13 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { fromEvent, debounceTime, Observable } from "rxjs";
 import { fetchLoompasList } from "../features";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { RootState } from "../store";
 import { lastRequestExpired } from "../utils";
-import { LoadingState } from "../declarations";
+import { LoadingState, OompaLoompa } from "../declarations";
+import { getFilteredList } from "../components/OompasList/filter";
 
-export const useLoompaList = () => {
+export const useLoompaList = (searchText: string) => {
   const dispatch = useAppDispatch();
   const {
     value: loompas,
@@ -49,5 +50,13 @@ export const useLoompaList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
-  return { loompas, status };
+  const filteredList: OompaLoompa[] = useMemo(() => {
+    return getFilteredList(loompas, searchText);
+  }, [loompas, searchText]);
+
+  useEffect(() => {
+    document.title = "Oompa Loompa list - Loompa Hunter";
+  }, []);
+
+  return { loompas: filteredList, status };
 };
