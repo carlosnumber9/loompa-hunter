@@ -34,7 +34,7 @@
 }
 
 @media screen and (max-width: 600px) {
-    .columns-wraper {
+    .columns-wrapper {
         flex-wrap: wrap;
     }
 }
