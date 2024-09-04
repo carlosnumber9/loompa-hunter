@@ -1,4 +1,4 @@
-import { OompaLoompa } from "../../declarations";
+import { OompaLoompa } from "../declarations";
 
 export const getFilteredList = (
   loompas: OompaLoompa[],

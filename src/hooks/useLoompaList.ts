@@ -3,9 +3,8 @@ import { fromEvent, debounceTime, Observable } from "rxjs";
 import { fetchLoompasList } from "../features";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { RootState } from "../store";
-import { lastRequestExpired } from "../utils";
+import { getFilteredList, lastRequestExpired } from "../utils";
 import { LoadingState, OompaLoompa } from "../declarations";
-import { getFilteredList } from "../components/OompasList/filter";
 
 export const useLoompaList = (searchText: string) => {
   const dispatch = useAppDispatch();
