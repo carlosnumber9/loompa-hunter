@@ -1,50 +1,45 @@
-# React + TypeScript + Vite
+# Loompa Hunter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web app to keep track of the best oompa loompa workers ahead of the Chocolate Factory's selection process.
+This is a project for Napptilus Tech Labs' selection process.
 
-Currently, two official plugins are available:
+Inside of the web app you will find a list of oompa loompas. You can scroll down and load tons more.
+When clicking on any oompa loompa, you will get to the detail page where you can read their description.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
+## Code features
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **API usage**: All oompa loompas are loaded right from calls to an endpoint, and the dynamic pagination 
+allows the user to keep exploring more pages of characters.
+- **Filter**: The text input field can be used to find specific workers by full name or profession. The
+match text is highlighted over the filtered loompas.
+- **Data storage**: Through Redux library, the web app saves the list and details of the oompa loompas and 
+keeps the information. The loompa data is reloaded if the stored one stayed for at least one day.
+
+
+
+
+## Run it
+
+- Execute the local development server like this:
+
+```bash
+git clone git@github.com:carlosnumber9/loompa-hunter.git
+cd loompa-hunter
+npm install
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- Build the production code and store the results into the `dist` directory:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+```bash
+npm run build
+```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+- Run a process to execute the linter and check for code mistakes:
+
+```bash
+npm run lint
 ```
