@@ -5,8 +5,10 @@
     justify-content: center;
 }
 
-.loompa-name {
+.loompa-name, .highlighted-name {
     margin-bottom: 0;
+    font-weight: bold;
+    font-size: large;
 }
 
 .columns-wrapper {

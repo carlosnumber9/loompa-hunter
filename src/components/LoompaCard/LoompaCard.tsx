@@ -16,8 +16,8 @@ export const LoompaCard: React.FC<Props> = ({
       searchWords={[searchText]}
       textToHighlight={`${oompaLoompa.first_name} ${oompaLoompa.last_name}`}
       autoEscape
-      unhighlightTag={"h4"}
       unhighlightClassName="loompa-name"
+      highlightClassName="highlighted-name"
     />
     <span>
       {GENDER[oompaLoompa.gender]} <span />
