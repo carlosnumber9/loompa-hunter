@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useMemo } from "react";
-import { fromEvent, debounceTime, Observable } from "rxjs";
 import { fetchLoompasList } from "../features";
-import { useAppDispatch, useAppSelector } from "../hooks";
+import { useAppDispatch, useAppSelector, usePagination } from "../hooks";
 import { RootState } from "../store";
 import { getFilteredList, lastRequestExpired } from "../utils";
-import { LoadingState, OompaLoompa } from "../declarations";
+import { OompaLoompa } from "../declarations";
 
 export const useLoompaList = (searchText: string) => {
   const dispatch = useAppDispatch();
@@ -33,28 +32,7 @@ export const useLoompaList = (searchText: string) => {
   }, []);
 
   // Dynamic pagination
-  useEffect(() => {
-    const onScroll = () => {
-      const scrolledPosition: number = window.scrollY + window.innerHeight;
-      const scrollHeight: number = document.body.scrollHeight;
-      if (
-        scrolledPosition >= scrollHeight - 300 &&
-        status !== LoadingState.LOADING
-      ) {
-        fetchLoompas();
-      }
-    };
-
-    const scroll: Observable<Event> = fromEvent(document, "scroll");
-    const result: Observable<Event> = scroll.pipe(debounceTime(1000));
-    const subscription = result.subscribe(onScroll);
-
-    return () => {
-      subscription.unsubscribe();
-    };
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status]);
+  usePagination({status, fetchLoompas});
 
   // Page title
   useEffect(() => {
