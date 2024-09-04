@@ -18,9 +18,9 @@ export const LoompaDetail: React.FC = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
+        transition={{ duration: 0.3, ease: "easeInOut", delay: 0.3 }}
+        className="loompa-detail"
       >
-        <div className="loompa-detail">
           {status === LoadingState.OK && details && (
             <div className="columns-wrapper">
               <div>
@@ -44,7 +44,6 @@ export const LoompaDetail: React.FC = () => {
           )}
           {status === LoadingState.ERROR && <span>Error</span>}
           {status === LoadingState.LOADING && <Loader />}
-        </div>
       </motion.div>
     </AnimatePresence>
   );
