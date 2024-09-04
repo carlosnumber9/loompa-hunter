@@ -1,9 +1,13 @@
+import "./FilterInput.css";
 import { setText } from "../../features";
 import { useAppDispatch } from "../../hooks";
 import { AppDispatch } from "../../store";
-import "./FilterInput.css";
 
-export const FilterInput: React.FC = () => {
+interface Props {
+  searchText: string;
+}
+
+export const FilterInput: React.FC<Props> = ({ searchText }) => {
   const dispatch: AppDispatch = useAppDispatch();
 
   return (
@@ -15,6 +19,7 @@ export const FilterInput: React.FC = () => {
         onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
           dispatch(setText(event.target.value))
         }
+        value={searchText}
       />
       <span> | </span>
       <img

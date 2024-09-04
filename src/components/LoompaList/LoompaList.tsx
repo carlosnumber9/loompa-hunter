@@ -10,7 +10,7 @@ export const OompasList: React.FC = () => {
 
   return (
     <div className="list-container">
-      <FilterInput />
+      <FilterInput searchText={searchText} />
       <h1 id="list-title">Find your Oompa Loompa</h1>
       <h3 id="list-subtitle">There are more than 100k</h3>
       <div className="loompas-list">

@@ -1,9 +1,10 @@
 .input-container {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     position: relative;
     border-radius: 5px;
     border: 2px solid lightgray;
-    width: 130px;
-    height: 20px;
+    width: 180px;
+    height: 25px;
     display: inline-flex;
     align-items: center;
     padding: 5px;
