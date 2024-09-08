@@ -1,12 +1,14 @@
 import { OompaLoompa } from "../declarations";
 
+const getMergedFields = (oompaLoompa: OompaLoompa) =>
+  `${oompaLoompa.first_name} ${oompaLoompa.last_name} ${oompaLoompa.profession}`;
+
 export const getFilteredList = (
   loompas: OompaLoompa[],
   searchText: string
 ): OompaLoompa[] =>
-  searchText.length ? loompas.filter(
-    (loompa: OompaLoompa) =>
-      loompa.first_name.includes(searchText) ||
-      loompa.last_name.includes(searchText) ||
-      loompa.profession.includes(searchText)
-  ) : loompas;
+  loompas.length
+    ? loompas.filter((loompa: OompaLoompa) =>
+        getMergedFields(loompa).includes(searchText)
+      )
+    : loompas;
