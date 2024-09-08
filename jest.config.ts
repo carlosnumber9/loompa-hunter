@@ -17,4 +17,8 @@ export default {
     "^.+\\.jsx?$": ["babel-jest", {}],
   },
   verbose: true,
+  globals: {
+    __DEV__: true,
+    __TESTING__: true
+  }
 };
