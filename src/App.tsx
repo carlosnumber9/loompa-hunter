@@ -4,6 +4,7 @@ import "./App.css";
 import { store } from "./store";
 import { LoompaDetail, OompasList } from "./components";
 import { Link } from "react-router-dom";
+import { HEADER_TEXT } from "./constants";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
               src={import.meta.env.VITE_OOMPA_LOOMPA_ICON_URL}
             />
           </Link>
-          <h3> Oompa Loompa's Crew </h3>
+          <h3>{HEADER_TEXT}</h3>
         </header>
         <div className="content">
           <Routes>

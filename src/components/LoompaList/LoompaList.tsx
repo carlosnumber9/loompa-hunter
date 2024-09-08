@@ -1,9 +1,9 @@
 import "./LoompaList.css";
+import { AnimatePresence, motion } from "framer-motion";
+import { Item, FilterInput, Loader } from "..";
 import { LoadingState, OompaLoompa } from "../../declarations";
 import { useAppSelector, useLoompaList } from "../../hooks";
-import { Item, FilterInput } from "..";
-import { Loader } from "../Loader";
-import { AnimatePresence, motion } from "framer-motion";
+import { LOOMPALIST_TEXTS } from "../../constants";
 
 export const OompasList: React.FC = () => {
   const searchText: string = useAppSelector((state) => state.searchText.value);
@@ -12,8 +12,8 @@ export const OompasList: React.FC = () => {
   return (
     <div className="list-container">
       <FilterInput searchText={searchText} />
-      <h1 id="list-title">Find your Oompa Loompa</h1>
-      <h3 id="list-subtitle">There are more than 100k</h3>
+      <h1 id="list-title">{LOOMPALIST_TEXTS.TITLE}</h1>
+      <h3 id="list-subtitle">{LOOMPALIST_TEXTS.SUBTITLE}</h3>
       <AnimatePresence>
         <motion.div
           initial={{ opacity: 0 }}
@@ -24,7 +24,11 @@ export const OompasList: React.FC = () => {
         >
           {(loompas.length > 0 || status === LoadingState.OK) &&
             loompas.map((loompa: OompaLoompa) => (
-              <Item oompaLoompa={loompa} key={loompa.id} currentPage={currentPage}/>
+              <Item
+                oompaLoompa={loompa}
+                key={loompa.id}
+                currentPage={currentPage}
+              />
             ))}
           {status === LoadingState.ERROR && <span> Error </span>}
           {status === LoadingState.LOADING && <Loader />}
