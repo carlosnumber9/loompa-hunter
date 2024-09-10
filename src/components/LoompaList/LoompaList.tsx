@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Item, FilterInput, Loader } from "..";
 import { LoadingState, OompaLoompa } from "../../declarations";
 import { useAppSelector, useLoompaList } from "../../hooks";
-import { LOOMPALIST_TEXTS } from "../../constants";
+import { LOOMPALIST } from "../../constants";
 
 export const OompasList: React.FC = () => {
   const searchText: string = useAppSelector((state) => state.searchText.value);
@@ -12,8 +12,8 @@ export const OompasList: React.FC = () => {
   return (
     <div className="list-container">
       <FilterInput searchText={searchText} />
-      <h1 id="list-title">{LOOMPALIST_TEXTS.TITLE}</h1>
-      <h3 id="list-subtitle">{LOOMPALIST_TEXTS.SUBTITLE}</h3>
+      <h1 id="list-title">{LOOMPALIST.TITLE}</h1>
+      <h3 id="list-subtitle">{LOOMPALIST.SUBTITLE}</h3>
       <AnimatePresence>
         <motion.div
           initial={{ opacity: 0 }}

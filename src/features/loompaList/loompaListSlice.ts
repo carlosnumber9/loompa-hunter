@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { LoadingState, OompaLoompa } from "../../declarations";
 import { RootState } from "../../store";
+import { LOOMPALIST } from "../../constants";
 
 interface State {
   value: OompaLoompa[];
@@ -21,7 +22,7 @@ export const fetchLoompasList = createAsyncThunk(
   async (_, { getState }) => {
     const currentState: RootState = getState() as RootState;
     const currentPage: number = currentState.loompas.nextPage;
-    if (currentPage <= 20) {
+    if (currentPage <= LOOMPALIST.LAST_PAGE) {
       const response = await fetch(
         `${import.meta.env.VITE_LOOMPA_LIST_URL}?page=${currentPage}`
       ).then((response) => response.json());
