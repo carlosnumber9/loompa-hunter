@@ -31,7 +31,7 @@ export const OompasList: React.FC = () => {
               />
             ))}
           {status === LoadingState.ERROR && <span> Error </span>}
-          {status === LoadingState.LOADING && <Loader />}
+          {(status === LoadingState.LOADING && currentPage < 20) && <Loader />}
         </motion.div>
       </AnimatePresence>
     </div>

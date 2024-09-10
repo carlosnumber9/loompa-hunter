@@ -1,6 +1,6 @@
+import "./App.css";
 import { Provider } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
 import { store } from "./store";
 import { LoompaDetail, OompasList } from "./components";
 import { Link } from "react-router-dom";

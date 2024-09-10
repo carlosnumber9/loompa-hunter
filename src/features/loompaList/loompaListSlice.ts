@@ -21,10 +21,13 @@ export const fetchLoompasList = createAsyncThunk(
   async (_, { getState }) => {
     const currentState: RootState = getState() as RootState;
     const currentPage: number = currentState.loompas.nextPage;
-    const response = await fetch(
-      `${import.meta.env.VITE_LOOMPA_LIST_URL}?page=${currentPage}`
-    ).then((response) => response.json());
-    return response.results as OompaLoompa[];
+    if (currentPage <= 20) {
+      const response = await fetch(
+        `${import.meta.env.VITE_LOOMPA_LIST_URL}?page=${currentPage}`
+      ).then((response) => response.json());
+      return response.results as OompaLoompa[];
+    }
+    return [];
   }
 );
 
